@@ -12,12 +12,14 @@ class App extends React.Component {
 		super(props);
 
 		this.state = {
-			videos: []
+			videos: [],
+			selectedVideo: undefined
 		};
 
-		YTSearch({key: API_KEY, term: "surfboard"}, videos => {
+		YTSearch({key: API_KEY, term: "chainsmoker"}, videos => {
 			this.setState({
-				videos
+				videos: videos,
+				selectedVideo: videos[0]
 			});
 		});
 	}
@@ -25,10 +27,12 @@ class App extends React.Component {
 	render() {
 		return <div>
 			<SearchBar></SearchBar>
-			<VideoDeatil video={this.state.videos[0]}></VideoDeatil>;
-			<VideoList videos={this.state.videos}></VideoList>
+			<VideoDeatil video={this.state.selectedVideo}></VideoDeatil>
+			<VideoList onVideoSelect={selectedVideo => this.setState({selectedVideo})} videos={this.state.videos}></VideoList>
 		</div>;
 	}
+
+	
 }
 
 ReactDOM.render(<App />, document.querySelector(".container"));

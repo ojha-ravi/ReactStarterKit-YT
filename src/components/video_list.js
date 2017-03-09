@@ -5,7 +5,7 @@ export const VideoList = (props) => {
 	return <ul className="col-md-4 list-group">
 		{
 			props.videos.map(v => {
-				return <VideoListItem video={v} key={v.etag}></VideoListItem>
+				return <VideoListItem onVideoSelect={props.onVideoSelect} video={v} key={v.etag}></VideoListItem>
 			})
 		}
 	</ul>;
