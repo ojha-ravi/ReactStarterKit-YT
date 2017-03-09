@@ -11,7 +11,7 @@ export class SearchBar extends React.Component {
 	}
 
 	render() {
-		return <div>
+		return <div className="search-bar">
 			<input placeholder="Enter to search here" onChange={this.handleOnChangeCurry} value={this.state.term}></input>
 		</div>;
 	}
@@ -20,5 +20,7 @@ export class SearchBar extends React.Component {
 		this.setState({
 			term: e.target.value
 		});
+
+		this.props.onSearchTermChange(e.target.value)
 	}
 }

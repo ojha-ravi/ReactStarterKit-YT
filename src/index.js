@@ -16,23 +16,25 @@ class App extends React.Component {
 			selectedVideo: undefined
 		};
 
-		YTSearch({key: API_KEY, term: "chainsmoker"}, videos => {
+		this.videoSearch("surfboards")
+	}
+
+	render() {
+		return <div>
+			<SearchBar onSearchTermChange={term => this.videoSearch(term)}></SearchBar>
+			<VideoDeatil video={this.state.selectedVideo}></VideoDeatil>
+			<VideoList onVideoSelect={selectedVideo => this.setState({selectedVideo})} videos={this.state.videos}></VideoList>
+		</div>;
+	}
+
+	videoSearch(term) {
+		YTSearch({key: API_KEY, term: term}, videos => {
 			this.setState({
 				videos: videos,
 				selectedVideo: videos[0]
 			});
 		});
 	}
-
-	render() {
-		return <div>
-			<SearchBar></SearchBar>
-			<VideoDeatil video={this.state.selectedVideo}></VideoDeatil>
-			<VideoList onVideoSelect={selectedVideo => this.setState({selectedVideo})} videos={this.state.videos}></VideoList>
-		</div>;
-	}
-
-	
 }
 
 ReactDOM.render(<App />, document.querySelector(".container"));
