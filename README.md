@@ -4,5 +4,3 @@
 	npm install
 	npm start
 ```
-
--- [Ref](https://www.udemy.com/react-redux/)
